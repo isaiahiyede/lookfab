@@ -1,0 +1,92 @@
+{% load staticfiles %}
+
+		<!-- Modal content-->
+		<div class="modal-content"  id="confirmOrder">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"></button>
+			</div>
+				<div class="modal-body modal-body-sub_agile">
+				<div class="col-md-8 modal_body_left modal_body_left1">
+				<h3 class="agileinfo_sign">Order Confirmation</h3>
+				 
+				<div class="row"> 
+				<div>
+					<label>Subtotal: $ {{subTotal}}</label>
+					<span></span>
+				</div><br>
+				<div>
+					<label>Shipping Cost: $ {{shippingCost}}</label>
+					<span></span>
+				</div><br>
+				<input type="hidden" name="bot_catcher" value="">  
+				<div>
+					<label>Grand Total: $ {{grandTotal}}</label>
+					<span></span>
+				</div><br>
+				<h4>NB: Payment includes VAT</h4><br>
+			    </div>
+
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				    <input id="id_business" name="business" type="hidden" value="info@look-fab.com">
+				    <input id="id_return_url" name="return" type="hidden">
+				    <input type="hidden" name="item_name" value="Pay For items">
+				    <input id="id_cmd" name="cmd" type="hidden" value="_xclick">
+				    <input type="hidden" min="1" step="0.01" required name="amount" placeholder="Enter Amount in USD($)" value="{{grandTotal}}">
+				    <input id="id_charset" name="charset" type="hidden" value="utf-8">
+				    <input type="hidden" name="notify_url" value="http://www.look-fab.com">
+				    <input type="hidden" name="return" value="http://www.look-fab.com/confirm_paypal_payment">
+				    <input type="hidden" name="rm" value="2">
+				    <input type="hidden" name="cbt" value="Return to Site">
+				    <input id="id_currency_code" name="currency_code" type="hidden" value="USD">
+				    <input id="id_no_shipping" name="no_shipping" type="hidden" value="1">
+				    <input type="image" src="{% static 'images/paypalbutton.jpeg' %}" height="50" border="0" name="submit" alt="Pay Now">
+				</form>
+
+				<div class="row pull-right">				
+					<form method="post" action="{% url 'payments:mainPay' %}">
+						{% csrf_token %}
+							<div class="col-md-6">
+								<div class="col-md-12 hidden">
+									<input placeholder="Amount" type="number" name="paystack_amount" 
+									id="paystack_amount" value="{{paystack_amount}}"/>
+								</div>
+
+								<input type="hidden" name="payment-method" value="card"/>
+
+		                        <input type="hidden" name="bot_catcher" value="botty"/>
+								
+								<div class="col-md-12">
+		                        <button type="submit" 
+		                        style="position: relative;bottom: 50px;" class="btn btn-primary" id="">Pay with Paystack</button>
+		                    </div>
+						</div>
+					</form>
+				</div>
+						
+
+				<!-- PAYPAL_RETURN_URL = "http://127.0.0.1:8000/confirm_paypal_payment/"
+				PAYPAL_RECEIVER_EMAIL = 'jonesodezi@gmail.com'
+				PAYPAL_PDT_URL = 'https://www.sandbox.paypal.com/us/cgi-bin/webscr' -->
+
+				<!-- <form action="https://www.sandbox.paypal.com/us/cgi-bin/webscr" method="post">
+				    <input id="id_business" name="business" type="hidden" value="jonesodezi@gmail.com">
+				    <input id="id_return_url" name="return" type="hidden">
+				    <input type="hidden" name="item_name" value="Pay For items">
+				    <input id="id_cmd" name="cmd" type="hidden" value="_xclick">
+				    <input type="hidden" min="1" step="0.01" required name="amount" placeholder="Enter Amount in USD($)" value="{{grandTotal}}">
+				    <input id="id_charset" name="charset" type="hidden" value="utf-8">
+				    <input type="hidden" name="notify_url" value="http://localhost:8000">
+				    <input type="hidden" name="return" value="http://localhost:8000/confirm_paypal_payment/">
+				    <input type="hidden" name="rm" value="2">
+				    <input type="hidden" name="cbt" value="Return to Site">
+				    <input id="id_currency_code" name="currency_code" type="hidden" value="USD">
+				    <input id="id_no_shipping" name="no_shipping" type="hidden" value="1">
+				    <input type="image" src="{% static 'images/paypalbutton.jpeg' %}" height="50" border="0" name="submit" alt="Pay Now">
+				</form> -->
+
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- //Modal content-->
+	

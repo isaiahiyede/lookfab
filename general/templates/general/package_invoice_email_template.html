@@ -1,0 +1,57 @@
+{% load humanize %}
+{% load staticfiles %}
+
+<html>
+<body>
+    <head>
+        <!-- <link href="{% static 'sokohali/css/package_invoice.css' %}" rel="stylesheet"> -->
+    </head>
+<div style="font-size: larger;">
+    <strong>
+        Shopping Invoice: Package ID: {{ pkg.tracking_number }} <br/>
+        <div style="color:green;">Status: {{pkg.status}}</style></div>
+    </strong>
+    </div>
+    </p>
+    <div>
+        Thank you for shopping with <a href="http://wwww.look-fab.com">look-fab.com</a>.<br/><br/>
+
+    </div>
+    </p>
+
+    
+    <div>
+        Please print and keep this document. It will be required at the point of collection of your package.<br/>
+    </div>
+    </p>
+   
+    </p>
+    <table style="min-width: 600px;max-width: 600px;border-collapse: collapse;border: 2px solid black;padding:5px;">
+        <tr>
+            <td style="font-weight: bold;">What was shipped</td>
+            <td style="font-weight: bold;">Qty.</td>
+            <td style="font-weight: bold;">Price ($)</td>
+        </tr>
+            {% for item in pkg.items_in_package %}
+                <tr>
+                    <td style="border: 1px solid black; padding: 5px 10px;">{{item.name}}</td>
+                    <td style="border: 1px solid black; padding: 5px 10px;">{{item.quantity}}</td>
+                    <td style="border: 1px solid black; padding: 5px 10px;">{{item.getTotal|floatformat:2|intcomma}}</td>
+                </tr>
+            {% endfor %}
+    </table>
+    </p>
+    <table class="table table-striped" style="min-width: 600px;max-width: 600px;border-collapse: collapse;border: 2px solid black;padding:5px;">
+        <tr>
+            <th style="font-weight: bold;">Total items cost ($)</th>
+            <th style="font-weight: bold;">Total shipping cost ($)</th>
+            <th style="font-weight: bold;">Grand Total ($)</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 5px 10px;"> {{ pkg.subTotal}}</td>
+            <td style="border: 1px solid black; padding: 5px 10px;"> {{ pkg.shippingCost}}</td>
+            <td style="border: 1px solid black; padding: 5px 10px;"> {{ pkg.total_amount}}</td>
+        </tr>
+    </table>
+</body>
+</html>

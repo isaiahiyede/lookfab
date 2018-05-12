@@ -1,0 +1,1010 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% block header %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Look-fab is an Ecommerce Online Shopping Platform</title>
+<!--/tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Elite Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //tags -->
+<!--//tags -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"> 
+<link href="{% static 'css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+<!-- //for bootstrap working -->
+
+
+<!-- //for bootstrap working -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<!-- header -->
+<div class="header" id="home">
+	<div class="container">
+		<ul>
+			{% if not request.user.is_authenticated %}
+		    <li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+			<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+			{% else %}
+			<li>Hi, {{request.user.username}}</li>
+			{% endif %}
+
+
+			<li><i class="fa fa-phone" aria-hidden="true"></i>Call: +734-612-1298</li>
+			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@lookfab.com">info@look-fab.com</a></li>
+
+			{% if "admin-page" in request.path or request.user.is_authenticated %}
+			<li><a href="{% url 'general:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
+<!-- //header -->
+<!-- header-bot -->
+<div class="header-bot">
+	<div class="header-bot_inner_wthreeinfo_header_mid">
+		<div class="col-md-4 header-middle">
+			<a href="/"><img src="{% static 'images/lookfab.png' %}" height="80"></a>
+		</div>
+		<!-- header-bot -->
+		<div class="col-md-4 header-middle">
+			{% for msg in messages %}
+	            <script>
+	                function show_alert(){
+	                var alert = '<p class="text-{{ msg.tags }}">{{ msg }}</p>';
+	                document.write(alert);
+	                }
+	                display = window.setTimeout(show_alert(), 1000);
+	                window.clearTimeout(display);
+	            </script>
+	        {% endfor %}
+		</div>
+
+		
+        <!-- header-bot -->
+		<div class="col-md-4 agileits-social top_content">
+			<ul class="social-nav model-3d-0 footer-social w3_agile_social">
+               <li class="share">Share On:</li>
+				<li><a href="#" class="facebook">
+					  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+				<li><a href="#" class="twitter"> 
+					  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+				<li><a href="#" class="instagram">
+					  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+				<li><a href="#" class="pinterest">
+					  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+			</ul>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+</div>
+{% endblock header %}
+<!-- //header-bot -->
+<!-- banner -->
+{% block banner %}
+<div class="ban-top">
+	<div class="container">
+		<div class="top_nav_left">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+				  <ul class="nav navbar-nav menu__list">
+					<li class="active menu__item menu__item--current"><a class="menu__link" href="/">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="#" data-toggle="modal" data-target="#myModal3">About</a></li>
+					<li class="dropdown menu__item">
+						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Men<span class="caret"></span></a>
+							<ul class="dropdown-menu multi-column columns-3">
+								<div class="agile_inner_drop_nav_info">
+									<!-- <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+										<a href="#"><img src="{% static 'images/top2.jpg' %}" alt=" "/></a>
+									</div> -->
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											<li><a href="{% url 'general:all-items' 'men' %}">All</a>
+											</li>
+											<li><a href="{% url 'general:store-items' 'men' 'clothing' %}">Clothing</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'wallets' %}">Wallets</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'shoes' %}">Shoes</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'watches' %}">Watches</a></li>
+											
+										</ul>
+									</div>
+
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											
+											<li><a href="{% url 'general:store-items' 'men' 'jewellery' %}">Jewellery</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'sunglasses' %}">Sunglasses</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'perfumes' %}">Perfumes</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'bags' %}">Bags</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'menjeans' %}">Jeans</a></li>
+											
+										</ul>
+									</div>
+
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											
+											<li><a href="{% url 'general:store-items' 'men' 'caps' %}">Caps & Hats</a></li>
+											<li><a href="{% url 'general:store-items' 'men' 'swimwear' %}">Swimwear</a></li>
+											
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+					</li>
+
+					<li class="dropdown menu__item">
+						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Women <span class="caret"></span></a>
+							<ul class="dropdown-menu multi-column columns-3">
+							  <div class="agile_inner_drop_nav_info">
+								<div class="col-sm-4 multi-gd-img">
+									<ul class="multi-column-dropdown">
+										<li><a href="{% url 'general:all-items' 'women' %}">All</a>
+											</li>
+										<li><a href="{% url 'general:store-items' 'women' 'clothing' %}">Clothing</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'wallets' %}">Wallets</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'footwear' %}">Footwear</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'watches' %}">Watches</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'beads' %}">Beads</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'bags' %}">Bags</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'tops' %}">Tops</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'bottoms' %}">Bottoms</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'dresses' %}">Dresses</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'skirts' %}">Skirts</a></li>
+										
+									</ul>
+								</div>
+
+								<div class="col-sm-4 multi-gd-img">
+									<ul class="multi-column-dropdown">
+										<li><a href="{% url 'general:store-items' 'women' 'hats' %}">Caps & Hats</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'jewellery' %}">Jewellery</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'sunglasses' %}">Sunglasses</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'swimwear' %}">Perfumes</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'perfumes' %}">Beauty</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'beauty' %}">Shirts</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'Skirts' %}">Sunglasses</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'swimwear' %}">Swimwear</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'plussizetops' %}">Plus size tops</a></li>
+										<li><a href="{% url 'general:store-items' 'women' 'plussizebottoms' %}">Plus size bottoms</a></li>
+										
+									</ul>
+								</div>
+
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											<li><a href="{% url 'general:store-items' 'women' 'womenjeans' %}">Jeans</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'jumpsuits' %}">Jumpsuits</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'wedges' %}">wedges</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'flats' %}">flats</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'pumps' %}">pumps</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'heels' %}">heels</a></li>
+											<li><a href="{% url 'general:store-items' 'women' 'highheels' %}">high heels</a></li>
+										</ul>
+									</div>
+
+
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+					</li>
+
+					<li class="dropdown menu__item">
+						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kids<span class="caret"></span></a>
+							<ul class="dropdown-menu multi-column columns-3">
+								<div class="agile_inner_drop_nav_info">
+									<!-- <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+										<a href="#"><img src="{% static 'images/top2.jpg' %}" alt=" "/></a>
+									</div> -->
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											<li><a href="{% url 'general:all-items' 'kids' %}">All</a>
+											</li>
+											<li><a href="{% url 'general:store-items' 'kids' 'clothing' %}">Clothing</a></li>
+											<li><a href="{% url 'general:store-items' 'kids' 'bags' %}">Bags</a></li>
+											<li><a href="{% url 'general:store-items' 'kids' 'shoes' %}">Shoes</a></li>
+											
+										</ul>
+									</div>
+
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											
+											<li><a href="{% url 'general:store-items' 'kids' 'caps' %}">Caps & Hats</a></li>
+											<li><a href="{% url 'general:store-items' 'kids' 'swimwear' %}">Swimwear</a></li>
+											
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+					</li>
+					
+					<li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+					
+					{% if request.user.is_authenticated %}
+					<li class="dropdown menu__item">
+						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+							<ul class="dropdown-menu multi-column columns-3">
+								<div class="agile_inner_drop_nav_info">
+									<!-- <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+										<a href="#"><img src="{% static 'images/top2.jpg' %}" alt=" "/></a>
+									</div> -->
+									<div class="col-sm-4 multi-gd-img">
+										<ul class="multi-column-dropdown">
+											
+											<li><a href="{% url 'general:all_customer_packages' %}">Packages</a></li>
+											<li><a href="{% url 'general:all_customer_orders' %}">Items</a></li>
+											
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+					</li>
+					{% endif %}
+
+
+				  </ul>
+				</div>
+			  </div>
+			</nav>	
+		</div>
+		<div class="top_nav_right" id="cartBox">
+			<div class="wthreecartaits wthreecartaits2 cart cart box_1"> 
+					
+				{% if request.user.is_authenticated %}	
+				<a href="{% url 'general:view_cart' %}">
+					<button class="w3view-cart" value="">
+						<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+					</button>
+				</a>
+				{% else %}
+					<button class="w3view-cart emptyCart" value="">
+						<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+					</button>	
+				{% endif %}
+
+				{% if request.user.is_authenticated %}{{items_in_cart}}{% endif %}	 
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+{% endblock banner %}
+<!-- //banner-top -->
+<!-- Modal1 -->
+{% block modals %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+				<div class="modal-body modal-body-sub_agile">
+				<div class="col-md-8 modal_body_left modal_body_left1">
+				<h3 class="agileinfo_sign">Sign In Now</h3>
+					<form action="{% url 'general:login' %}" method="post" enctype="multipart/form-data">
+		  			{% csrf_token %}
+					<div class="styled-input agile-styled-input-top">
+						<input type="text" name="username" required>
+						<label>Name</label>
+						<span></span>
+					</div>
+					<input type="hidden" name="bot_catcher" value=""> 
+					<div class="styled-input">
+						<input type="password" name="password" required> 
+						<label>Password</label>
+						<span></span>
+					</div> 
+					<input type="submit" value="Sign In">
+				</form>
+				  
+				<div class="clearfix"></div>
+				<p><a href="#" data-toggle="modal" data-target="#myModal2">Don't have an account?</a></p>
+
+				</div>
+				<!-- <div class="col-md-4 modal_body_right modal_body_right1">
+					<img src="{% static 'images/log_pic.jpg' %}" alt=" "/>
+				</div> -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- //Modal content-->
+	</div>
+</div>
+<!-- //Modal1 -->
+
+<!-- Modal2 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+				<div class="modal-body modal-body-sub_agile">
+				<div class="col-md-8 modal_body_left modal_body_left1">
+				<h3 class="agileinfo_sign">Sign Up Now</h3>
+				 <form action="{% url 'general:register' %}" method="post"
+				 enctype="multipart/form-data">
+		  			{% csrf_token %}
+					<div class="styled-input agile-styled-input-top">
+						<input type="text" name="username" required="" id="id_username">
+						<label>Name</label>
+						<span></span>
+					</div>
+					<div class="styled-input">
+						<input type="email" name="email" required="" id="id_email"> 
+						<label>Email</label>
+						<span></span>
+					</div>
+					<input type="hidden" name="bot_catcher" value="">  
+					<div class="styled-input">
+						<input type="password" name="password" required="" id="id_password">
+						<label>Password</label>
+						<span></span>
+					</div> 
+					<div class="styled-input">
+						<input type="password" name="password2" required=""> 
+						<label>Confirm Password</label>
+						<span></span>
+					</div>
+					<div class="styled-input">
+						<input type="text" name="phone_number" required=""> 
+						<label>Telephone</label>
+						<span></span>
+					</div> 
+					<input type="submit" value="Sign Up">
+				</form>
+				  
+				<div class="clearfix"></div>
+				<p><a href="#">By clicking "SUBMIT", I agree to your terms and conditions</a></p>
+
+				</div>
+				<!-- <div class="col-md-4 modal_body_right modal_body_right1">
+					<img src="{% static 'images/log_pic.jpg' %}" alt=" "/>
+				</div> -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- //Modal content-->
+	</div>
+</div>
+<!-- //Modal2 -->
+<!-- Modal4 -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content"  id="confirmOrder">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+				<div class="modal-body modal-body-sub_agile">
+				<div class="col-md-8 modal_body_left modal_body_left1">
+				<h3 class="agileinfo_sign">Order Confirmation</h3>
+				 <form action="" method="post">
+		  			{% csrf_token %}
+					<div class="styled-input agile-styled-input-top">
+						<label>Subtotal:</label>
+						<span>$ {{subTotal}}</span>
+					</div>
+					<div class="styled-input">
+						<label>Shipping Cost:</label>
+						<span>$ {{shippingCost}}</span>
+					</div>
+					<input type="hidden" name="bot_catcher" value="">  
+					<div class="styled-input">
+						<label>Grand Total:</label>
+						<span>$ {{grandTotal}}</span>
+					</div>  
+					<input type="submit" value="Pay Now">
+				</form>
+				  
+				<div class="clearfix"></div>
+				</div>
+				<!-- <div class="col-md-4 modal_body_right modal_body_right1">
+					<img src="{% static 'images/log_pic.jpg' %}" alt=" "/>
+				</div> -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- //Modal content-->
+	</div>
+</div>
+<!-- //Modal4 -->
+
+<!-- Modal3 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content"  id="aboutUs">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+				<div class="modal-body modal-body-sub_agile">
+				<div class="modal_body_left modal_body_left1">
+				<h3 class="agileinfo_sign">About Us</h3>
+
+				  	<p>Look-fab.com represents confident strong, and stylish person in  you. Lookfab apparel and accessories are for  adventurous and fashionable men and women of all ages.</p><br>
+
+					<p>Looking fabulous is what we are promoting, empowering men and women to feel good and confident. Your confident is what truly shines but your lookfab outfit adds that extra sparkle.</p><br>
+
+					<p>We strive to provide awesome service and unbeatable prices .
+					We are always on the look out for the newest styles for every occasion.</p><br>
+
+					<p><a href="www.look-fab.com">Look-fab.com</a><br>
+					734-612-1298<br>
+					Office hours 9AM-5:30AM EST
+					</p>
+				  
+				<div class="clearfix"></div>
+				</div>
+				<!-- <div class="col-md-4 modal_body_right modal_body_right1">
+					<img src="{% static 'images/log_pic.jpg' %}" alt=" "/>
+				</div> -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- //Modal content-->
+	</div>
+</div>
+<!-- //Modal3 -->
+
+{% endblock modals %}
+
+{% block inner_content %}
+  <!-- banner-bootom-w3-agileits -->
+<div class="banner-bootom-w3-agileits">
+	<div class="container">
+	     <div class="col-md-4 single-right-left ">
+			<div class="grid images_3_of_2">
+				<div class="flexslider">
+					
+					<ul class="slides">
+						<li data-thumb="">
+							{% if item.item_image_big %}
+							<div class="thumb-image"> <img src="{{item.item_image_big.url}}" data-imagezoom="true" class="img-responsive"> </div>
+							{% else %}
+							<div class="thumb-image"> <img src="{% static 'images/default.jpg' %}" data-imagezoom="true" class="img-responsive"> </div>
+                        	{% endif %}
+							
+						</li>
+						
+					</ul>
+					<div class="clearfix"></div>
+				</div>	
+			</div>
+		</div>
+		<div class="col-md-8 single-right-left simpleCart_shelfItem">
+					<h3>{{item.name}}</h3>
+					<p><span class="item_price">${{item.price}}</span> <!-- <del>- $900</del> --></p>
+					<div class="rating1">
+						<span class="starRating">
+							<input id="rating5" type="radio" name="rating" value="5">
+							<label for="rating5">5</label>
+							<input id="rating4" type="radio" name="rating" value="4"  checked="">
+							<label for="rating4">4</label>
+							<input id="rating3" type="radio" name="rating" value="3">
+							<label for="rating3">3</label>
+							<input id="rating2" type="radio" name="rating" value="2">
+							<label for="rating2">2</label>
+							<input id="rating1" type="radio" name="rating" value="1">
+							<label for="rating1">1</label>
+						</span>
+					</div><br>
+					<!-- <div class="description">
+						<h5>Check delivery, payment options and charges at your location</h5>
+						 <form action="#" method="post">
+						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
+						<input type="submit" value="Check">
+						</form>
+					</div> -->
+					
+					<!-- <div class="occasional">
+						<h5>Types :</h5>
+						<div class="colr ert">
+							<label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>
+						</div>
+						<div class="colr">
+							<label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>
+						</div>
+						<div class="colr">
+							<label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
+						</div>
+						<div class="clearfix"> </div>
+					</div> -->
+					<div class="occasion-cart">
+						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+								<fieldset>
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1">
+									<input type="hidden" name="business" value=" ">
+									<input type="hidden" name="item_name" value="{{item.name}}">
+									<input type="hidden" name="amount" value="{{item.price}}">
+									
+									<input type="hidden" name="currency_code" value="USD">
+									<input type="hidden" name="return" value=" ">
+									<input type="hidden" name="cancel_return" value=" ">
+									{% if request.user.is_authenticated %}
+									<input type="submit" item_price="{{item.price}}" 
+													item_name="{{item.name}}"
+													item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCart"/>
+									{% elif item.quantity == 0 %}
+									<input type="submit" item_price="{{item.price}}" 
+													item_name="{{item.name}}"
+													item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCartEmpty"/>
+									{% elif the_order_quantity > the_item.quantity %}
+									<input type="submit" item_price="{{item.price}}" 
+													item_name="{{item.name}}"
+													item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCartEmpty"/>
+									{% else %}
+									<input type="submit" item_price="{{item.price}}" 
+													item_name="{{item.name}}"
+													item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCartLogin"/>
+									{% endif %}
+								</fieldset>
+						</div>
+																			
+					</div>
+					<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
+						                                   <li class="share">Share On : </li>
+															<li><a href="#" class="facebook">
+																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="twitter"> 
+																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="instagram">
+																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="pinterest">
+																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+														</ul>
+					
+		      </div>
+	 			<div class="clearfix"> </div>
+				<!-- /new_arrivals --> 
+			<div class="responsive_tabs_agileits"> 
+				<div id="horizontalTab">
+						<ul class="resp-tabs-list">
+							<li>Description</li>
+							
+						</ul>
+					<div class="resp-tabs-container">
+					<!--/tab_one-->
+					   <div class="tab1">
+
+							<div class="single_page_agile_its_w3ls">
+							   <p>{{item.description}}</p>
+							   
+							</div>
+						</div>
+						<!--//tab_one-->
+						
+						</div>
+					</div>
+				</div>	
+			</div>
+	<!-- //new_arrivals --> 
+	  	<!--/slider_owl-->
+	
+			
+	        </div>
+ </div>
+ {% endblock inner_content %}
+<!--//single_page-->
+<!--/grids-->
+{% block coupons %}
+<div class="coupons">
+		<div class="coupons-grids text-center">
+			<div class="w3layouts_mail_grid">
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING</h3>
+						<p>Shipping services for items purchased</p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-headphones" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>24/7 SUPPORT</h3>
+						<p>Support service at your disposal</p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-shopping-bag" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>EXCHANGES</h3>
+						<p>We accept EXCHANGES ONLY in perfect condition</p>
+					</div>
+				</div>
+					<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-gift" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>FREE GIFT COUPONS</h3>
+						<p>Free gift coupons for special seasons</p>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+		</div>
+</div>
+{% endblock coupons %}
+<!--grids-->
+<!-- footer -->
+{% block footer %}
+<div class="footer">
+	<div class="footer_agile_inner_info_w3l">
+		<div class="col-md-3 footer-left">
+			<h2><a href="#"><span></span>Look-Fab</a></h2>
+			<p>Be the first to learn about promotions, sales, new arrivals, and more.</p>
+			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
+
+				<li>
+					<a href="#" class="facebook">
+					  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="twitter"> 
+					  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="instagram">
+					  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+					</a>
+			    </li>
+				<li>
+					<a href="#" class="pinterest">
+					  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+					  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-9 footer-right">
+			<div class="sign-grds">
+				<div class="col-md-4 sign-gd">
+					<h4>Our <span>Information</span> </h4>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal3">About</a></li>
+						<li><a href="{% url 'general:all-items' 'men' %}">Men</a></li>
+						<li><a href="{% url 'general:all-items' 'women' %}">Women</a></li>
+						<li><a href="{% url 'general:all-items' 'kids' %}">Kids</a></li>
+						<li><a href="">Contact</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-md-5 sign-gd-two">
+					<h4>Store <span>Information</span></h4>
+					<div class="w3-address">
+						<div class="w3-address-grid">
+							<div class="w3-address-left">
+								<i class="fa fa-phone" aria-hidden="true"></i>
+							</div>
+							<div class="w3-address-right">
+								<h6>Phone Number</h6>
+								<p>+734-612-1298</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="w3-address-grid">
+							<div class="w3-address-left">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</div>
+							<div class="w3-address-right">
+								<h6>Email Address</h6>
+								<p>Email :<a href="mailto:info@lookfab.com">info@look-fab.com</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="w3-address-grid">
+							
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+			
+
+		<div class="clearfix"></div>
+	</div>
+		<p class="copy-right">All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+	</div>
+</div>
+{% endblock footer %}
+<!-- //footer -->
+
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content modal-info">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+			</div>
+			<div class="modal-body modal-spa">
+				<div class="login-grids">
+					<div class="login">
+						<div class="login-bottom">
+							<h3>Sign up for free</h3>
+							<form>
+								<div class="sign-up">
+									<h4>Email :</h4>
+									<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+								</div>
+								<div class="sign-up">
+									<h4>Password :</h4>
+									<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+									
+								</div>
+								<div class="sign-up">
+									<h4>Re-type Password :</h4>
+									<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+									
+								</div>
+								<div class="sign-up">
+									<input type="submit" value="REGISTER NOW" >
+								</div>
+								
+							</form>
+						</div>
+						<div class="login-right">
+							<h3>Sign in with your account</h3>
+							<form>
+								<div class="sign-in">
+									<h4>Email :</h4>
+									<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+								</div>
+								<div class="sign-in">
+									<h4>Password :</h4>
+									<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+									<a href="#">Forgot password?</a>
+								</div>
+								<div class="single-bottom">
+									<input type="checkbox"  id="brand" value="">
+									<label for="brand"><span></span>Remember Me.</label>
+								</div>
+								<div class="sign-in">
+									<input type="submit" value="SIGNIN" >
+								</div>
+							</form>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //login -->
+<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+<!-- js -->
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+<!-- //js -->
+<script src="{% static 'js/modernizr.custom.js' %}"></script>
+	<!-- Custom-JavaScript-File-Links --> 
+	<!-- cart-js -->
+<script src="{% static 'js/imagezoom.js' %}"></script>
+<script src="{% static 'js/minicart.min.js' %}"></script>
+<script>
+	// Mini Cart
+	paypal.minicart.render({
+		action: '#'
+	});
+
+	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+</script>
+
+	<!-- //cart-js --> 
+<!-- script for responsive tabs -->						
+<script src="{% static 'js/easy-responsive-tabs.js' %}"></script>
+<script>
+	$(document).ready(function () {
+	$('#horizontalTab').easyResponsiveTabs({
+	type: 'default', //Types: default, vertical, accordion           
+	width: 'auto', //auto or any width like 600px
+	fit: true,   // 100% fit in a container
+	closed: 'accordion', // Start closed if in accordion view
+	activate: function(event) { // Callback function if tab is switched
+	var $tab = $(this);
+	var $info = $('#tabInfo');
+	var $name = $('span', $info);
+	$name.text($tab.text());
+	$info.show();
+	}
+	});
+	$('#verticalTab').easyResponsiveTabs({
+	type: 'vertical',
+	width: 'auto',
+	fit: true
+	});
+	});
+</script>
+<!-- FlexSlider -->
+<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script>
+// Can also be used with $(document).ready()
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+		animation: "slide",
+		controlNav: "thumbnails"
+		});
+	});
+</script>
+<!-- //FlexSlider-->
+<!-- //script for responsive tabs -->		
+<!-- stats -->
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.countup.js' %}"></script>
+<script>
+	$('.counter').countUp();
+</script>
+<!-- //stats -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear' 
+			};
+		*/
+							
+		$().UItoTop({ easingType: 'easeOutQuart' });
+							
+		});
+</script>
+<!-- //here ends scrolling icon -->
+<script>
+	
+	$('body').on('click', '.addToCart', function(){
+		
+		var item_pk = $(this).attr("item_pk");
+
+		$.ajax({
+            data: {'item_pk':item_pk},
+            type: 'POST',
+            url: "{% url 'general:cart_box' %}",
+            
+            success:function(data){
+            	console.log(data.out_of_stock);
+               if(data.out_of_stock == true){
+               	console.log(data);
+               	swal({
+					title: "Oops!",
+					text: "Item out of stock presently",
+					icon: "error",
+					button: "Ok!",
+				});
+               }else{
+               	console.log(data)
+               	$('#cartBox').replaceWith(data);
+               	swal({
+					title: "Hurray!",
+					text: "Item has been successfully added to your cart",
+					icon: "success",
+					button: "Ok!",
+				});
+               	console.log('working');
+               }	             
+            },
+
+            error:function(data){
+               console.log('not working');
+            }
+         });
+
+	});
+
+	$('body').on('click','.addToCartLogin',function(){
+		swal({
+			title: "That's Bad!",
+			text: "Please sign-up if you do not have an account or sign in to start shopping",
+			icon: "error",
+			button: "Ok!",
+		});
+	});
+
+	$('body').on('click','.addToCartEmpty',function(){
+		swal({
+			title: "Oops!",
+			text: "Item is out of stock presently",
+			icon: "error",
+			button: "Ok!",
+		});
+	});
+
+	$("body").on('click','.emptyCart',function(){
+		swal({
+			title: "That's Bad!",
+			text: "Your Shopping cart is empty",
+			icon: "error",
+			button: "Ok!",
+		 });
+		return false;
+	});
+
+</script>
+
+
+<!-- for bootstrap working -->
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock scripts %}
+
+</body>
+</html>

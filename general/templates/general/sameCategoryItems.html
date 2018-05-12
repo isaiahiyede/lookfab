@@ -1,0 +1,158 @@
+{% extends 'general/index.html' %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block inner_content %}
+
+	<!-- banner -->
+	 
+	<!-- //banner -->
+    <!-- <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/bottom1.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/bottom2.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					<div class="clearfix"></div>
+		    </div> 
+		 </div> 
+    </div> -->
+
+	<!-- schedule-bottom -->
+	<!-- //schedule-bottom -->
+
+  	<!-- banner-bootom-w3-agileits -->
+	
+	<!-- /new_arrivals --> 
+	<div class="new_arrivals_agile_w3ls_info"> 
+		<div class="container">
+			{% if itemsPresent %}
+		    <h3 class="wthree_text_info">New <span>Arrivals</span></h3>
+		    {% else %}
+		    <h3 class="wthree_text_info"><span>No item in this category presently</span></h3>
+		    {% endif %}		
+				<div id="">
+						
+					<div class="resp-tabs-container">
+
+						<!--/tab_one-->
+						<div class="">
+
+							{% for item in items %}
+							<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+								
+										{% if item.item_image_big %}
+		                            	<img src="{{item.item_image_big.url}}" alt="" class="pro-image-front">
+										<img src="{{item.item_image_small.url}}" alt="" class="pro-image-back">		                            	
+										{% else %}
+										<img src="{% static 'images/default.jpg' %}" alt="" class="pro-image-front">
+										<img src="{% static 'images/default.jpg' %}" alt="" class="pro-image-back">
+		                            	{% endif %}
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="{% url 'general:item_details' item.slug item.pk %}" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
+											<span class="product-new-top">New</span>
+											
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="{% url 'general:item_details' item.slug item.pk %}" style="text-decoration: none !important;">{{item.name}}</a></h4>
+										<div class="info-product-price">
+											<span class="item_price">${{item.price}}</span>
+											<!-- <del>$69.71</del> -->
+										</div>
+										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+												<fieldset>
+													<input type="hidden" name="cmd" value="_cart" />
+													<input type="hidden" name="add" value="1" />
+													<input type="hidden" name="business" value=" " />
+													<input type="hidden" name="item_name" value="{{item.name}}" />
+													<input type="hidden" name="amount" value="{{item.price}}" />
+													
+													<input type="hidden" name="currency_code" value="USD" />
+													<input type="hidden" name="return" value=" " />
+													<input type="hidden" name="cancel_return" value=" " />
+													{% if request.user.is_authenticated %}
+													<input type="submit" item_price="{{item.price}}" 
+																	item_name="{{item.name}}"
+																	item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCart"/>
+													{% elif item.quantity == 0 %}
+													<input type="submit" item_price="{{item.price}}" 
+																	item_name="{{item.name}}"
+																	item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCarEmpty"/>
+													{% elif order_item_quantity > the_item.quantity %}
+													<input type="submit" item_price="{{item.price}}" 
+																	item_name="{{item.name}}"
+																	item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCarEmpty"/>
+													{% else %}
+													<input type="submit" item_price="{{item.price}}" 
+																	item_name="{{item.name}}"
+																	item_pk="{{item.pk}}"" name="submit" value="Add to cart" class="button addToCartLogin"/>
+													{% endif %}
+												</fieldset>
+										</div>
+																			
+									</div>
+								</div>
+							</div>
+							{% endfor  %}
+							<div class="clearfix"></div><br>
+							
+							<div class="pagination" style="position:relative; font-size:10px; margin:0px; left:500px;">
+								<span class="step-links">
+
+									{% if items.has_previous %}
+										<a style="font-size:20px;" href="?page={{ items.previous_page_number }}">&laquo;</a>
+									{% else %}
+										<a style="font-size:20px;" class="hidden" >&laquo;</a>
+									{% endif %}
+
+									<span style="font-size:20px;" class="current">
+										Page {{ items.number }} of {{ items.paginator.num_pages }}.
+									</span>
+
+									{% if items.has_next %}
+										<a style="font-size:20px;" href="?page={{ items.next_page_number }}">&raquo;</a>
+									{% else %}
+										<a style="font-size:20px;" class="hidden">&raquo;</a>
+									{% endif %}
+
+								</span>
+							</div>
+						</div>
+						<!--//tab_one-->
+
+					</div>
+				</div>	
+			</div>
+		</div>
+		<!-- //new_arrivals --> 
+
+		<!-- /we-offer -->
+		<div class="sale-w3ls">
+			<div class="container">
+				<!-- <a class="hvr-outline-out button2" href="#">Shop Now </a> -->
+			</div>
+		</div>
+		<!-- //we-offer -->
+
+<!--/grids-->
+{% endblock inner_content %}

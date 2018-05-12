@@ -1,0 +1,340 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% block header %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'user/plugins/images/favicon.png' %}">
+    <title>Look-fab.com | Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'user/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="{% static 'user/css/animate.css' %}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{% static 'user/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user/plugins/bower_components/dropify/dist/css/dropify.min.css' %}">
+    
+    <!-- Custom CSS -->
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom_style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'awesomplete/awesomplete.css' %}" >
+ 
+    
+    <!-- color CSS -->
+    <link href="{% static 'user/css/colors/green-dark.css' %}" id="theme" rel="stylesheet">
+    <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+
+    <style>
+        .loader {
+             position: absolute;
+             left: 50%;
+             top: 50%;
+             z-index: 1;
+             width: 15px;
+             height: 150px;
+             margin: -75px 0 0 -75px;
+             border: 16px solid #f3f3f3;
+             border-radius: 50%;
+             border-top: 16px solid #449f07;
+             width: 120px;
+             height: 120px;
+             -webkit-animation: spin 5s linear infinite;
+             animation: spin 1s linear infinite;
+           }
+           
+           @-webkit-keyframes spin {
+             0% { -webkit-transform: rotate(0deg); }
+             100% { -webkit-transform: rotate(360deg); }
+           }
+           
+           @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+           }
+    </style>
+    
+    
+ 
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+        
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+
+          $('#generalDatatable').DataTable();
+         
+
+      });
+  </script>
+ 	
+ <script src="{% static 'awesomplete/awesomplete.js' %}" async></script>	
+
+</head>
+{% endblock header %}
+
+
+<body>
+
+{% block sidebar %}
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                <div class="top-left-part"><a class="logo" href="#"><b><!--This is dark logo icon--><!--This is light logo icon-->
+                <img src="{% static 'images/lookfab.png' %}" height="50" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text-->
+                <img src="{% static 'images/lookfab.png' %}" height="50" alt="home" class="dark-logo" /><!--This is light logo text--><img src="{% static 'images/lookfab.png' %}" height="50" alt="home" class="light-logo" /></span></a></div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+                    <li>
+                       
+                    </li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    
+                    
+                   
+                    
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+
+
+        <!-- Left navbar-header -->
+        
+                        <div class="sidebar" role="navigation">
+                          <div class="wp-sidebar-nav">
+                        <div class="user-profile">
+                            <div class="dropdown user-pro-body">
+                                <div>
+                                
+                            
+                                </div> 
+                                </ul>
+                            </div>
+                        </div>
+
+                        <ul class="wp-side-menu">
+
+                                    <li class="div_loader"> <a href="{% url 'general:admin' %}"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">Dashboard</span></a></li>
+                                    <li class="div_loader"> <a href="{% url 'general:add_category' %}"><i data-icon="\" class="linea-icon linea-basic fa-fw"></i> 
+                                    <span class="hide-menu" >Add Category</span></a> </li>
+                                    <li class="div_loader"> <a href="{% url 'general:add_item' %}"><i data-icon="C" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Add Item</span></a></li>
+                                    <li class="div_loader"> <a href="{% url 'general:all_orders' %}"><i data-icon="D" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">All Orders</span></a></li>
+                                    <li class="div_loader"> <a href="{% url 'general:all_payments' %}"><i data-icon="T" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">All Payments</span></a></li>
+                                    <li class="div_loader"> <a href="{% url 'general:all_customers' %}">
+                                    <i data-icon="R" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu" >Customer List</span></a> </li>
+                                    <li class="div_loader"> <a href="{% url 'general:logout' %}"><i data-icon="S" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu" >Logout</span></a> </li>
+                                    
+
+                                
+
+                        </ul>
+                          </div>
+                        </div>
+
+
+                       
+
+        <!-- Left navbar-header end -->
+        <!-- Page Content -->
+                <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        
+                        <h4 class="page-title">Hi {{request.user.username}},<br/>
+
+                        
+
+                      </h4> 
+
+                    </div>
+
+                       
+
+                        <h5>
+
+                            {% for msg in messages %}
+                                <script>
+                                    function show_alert(){
+                                    var alert = '<p class="text-{{ msg.tags }}">{{ msg }}</p>';
+                                    document.write(alert);
+                                    }
+                                    display = window.setTimeout(show_alert(), 1000);
+                                    window.clearTimeout(display);
+                                </script>
+                            {% endfor %}
+                            
+                        </h5>
+                        
+
+                        {% block add_event %}
+
+                        {% endblock add_event %}
+                    <!-- /.col-lg-12 -->
+                </div>
+{% endblock sidebar %}
+
+{% block events_won %}
+
+{% endblock events_won %}
+                <div class="loader hidden"></div>
+{% block transactions %}
+
+{% endblock transactions %}
+
+
+{% block footer %}
+ <footer class="footer text-center"> © Look-fab.com</footer>
+{% endblock footer %}
+
+
+{% block modals %}
+          
+<div class="modal fade" id="itemEditForm"  tabindex="-1" role="dialog" 
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="item_edit">
+        </div>
+    </div>
+</div>
+
+{% endblock modals %}
+
+      <script type="text/javascript">
+            // For demo to fit into DataTables site builder...
+          $('#generalDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+
+           
+
+      </script>
+
+    <script src="{% static 'user/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{% static 'user/js/wp-sidebar.js' %}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{% static 'user/js/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'user/js/waves.js' %}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'user/js/custom.min.js' %}"></script>
+    
+    <script src="{% static 'user/js/jasny-bootstrap.js' %}"></script>
+    <!-- jQuery file upload -->
+
+    <script src="{% static 'user/plugins/bower_components/dropify/dist/js/dropify.min.js' %}">
+    </script>
+
+
+    <script>
+
+        // $(document).ready(function(){
+        //     $('#myTable').DataTable();
+        // });
+
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez'
+                    , replace: 'Glissez-déposez un fichier ou cliquez pour remplacer'
+                    , remove: 'Supprimer'
+                    , error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                }
+                else {
+                    drDestroy.init();
+                }
+            })
+        });
+
+    </script>
+    <script src="{% static 'user/plugins/bower_components/styleswitcher/jQuery.style.switcher.js' %}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript" src="{% static 'jquery.timepicker.js' %}"></script>
+    
+    
+    <script>
+
+        $(document).on('focusin', function(e) {
+                if ($(e.target).closest(".mce-window").length) {
+                 e.stopImmediatePropagation();
+             }
+        });
+
+        $('body').on('click', '.edit_item', function(e){
+
+                 var item_pk = $(this).attr('item_pk');
+                 // alert(item_pk);
+
+                 $.ajax({
+                    data: {'item_pk':item_pk},
+                    type: 'GET',
+                    url: "{% url 'general:get_item' %}",
+                    
+                    success:function(data){
+                       $('#item_edit').replaceWith(data);
+                       $('#itemEditForm').modal('show');
+                       console.log('working');
+                       
+                    },
+
+                    error:function(data){
+                       console.log('not working');
+                    }
+                 })
+           });
+    </script>
+    
+ </body>
+
+</html>

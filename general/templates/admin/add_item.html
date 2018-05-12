@@ -1,0 +1,79 @@
+{% extends 'admin/adminHomepage.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block add_event %}
+{% endblock add_event %}
+
+{% block events_won %}
+{% endblock events_won %}
+
+{% block transactions %}
+
+<div class="col-md-12 view-events">
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <!--<h3 style="margin:15px 0px 5px 0px;">
+
+                % for msg in messages %}
+                    <script>
+                        function show_alert(){
+                        var alert = '<p style="color:red;" class="text-{ msg.tags }} bg-{{ msg.tags }}">{{ msg }}</p>';
+                        document.write(alert);
+                        }
+                        display = window.setTimeout(show_alert(), 1000);
+                        window.clearTimeout(display);
+                    </script>
+                % endfor %}
+            </h3>-->
+            <h3 class="box-title">Item Manager</h3>
+            <div class="table-responsive">
+              
+             <h3>ADD NEW ITEM</h3>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="bot_catcher" value="">
+          {% for hidden_field in itemForm.hidden_fields %}
+            {{ hidden_field }}
+          {% endfor %}
+
+          {% if itemForm.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for error in itemForm.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% for field in itemForm.visible_fields %}
+            <div class="form-group col-md-6">
+              {{ field.label_tag }}
+
+              {% if itemForm.is_bound %}
+                {% if field.errors %}
+                  {% render_field field class="form-control is-invalid" %}
+                  {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  {% render_field field class="form-control is-valid" %}
+                {% endif %}
+              {% else %}
+                {% render_field field class="form-control" %}
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <button type="submit" class="btn btn-primary pull-right">Submit</button>
+        </form>    
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+{% endblock transactions %}

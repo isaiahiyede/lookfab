@@ -1,0 +1,110 @@
+{% extends 'general/index.html' %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block inner_content %}
+
+	<!-- banner -->
+	 
+	<!-- //banner -->
+    <!-- <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/bottom1.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/bottom2.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					<div class="clearfix"></div>
+		    </div> 
+		 </div> 
+    </div> -->
+	<!-- schedule-bottom -->
+	
+	<!-- //schedule-bottom -->
+  	<!-- banner-bootom-w3-agileits -->
+	
+<!-- /new_arrivals --> 
+	<div class="new_arrivals_agile_w3ls_info">
+
+		<div class="container">
+
+			{% if not items_in_cart %}
+		    <h3 class="wthree_text_info"><span>Your shopping cart is empty</span></h3>
+		    {% else %}
+		    <h3 class="wthree_text_info"><span>Shopping cart</span></h3>
+		    {% endif %}		
+				<div id="">				
+					{% for item in order_items %}
+					<div class="well">
+						<div class="row">
+							<div class="col-md-4">
+								{% if item.item_image_big %}
+                            	<span><img src="{{item.item_image.url}}" style="height: 120px;"></span>
+                            	{% else %}
+                                <span><img src="{% static 'images/default.jpg' %}" style="height: 120px;"></span>
+                            	{% endif %}
+							</div>
+							<div class="col-md-4">		
+								<span><strong>Name: </strong> {{item.name}}</span><br>
+								<span><strong>Price: </strong> ${{item.price}}</span><br>
+								<span><strong>Quantity:</strong> {{item.quantity}}</span><br>
+								<span><strong>Status:</strong> {{item.status}}</span><br>
+								<span><strong>Tracking Number: </strong>{{item.courier_tracking_number}}</span>
+								<br>
+								<span><strong>Total:</strong> ${{item.getTotal}}</span><br>
+							</div>
+							<div class="col-md-4">
+								<a href=""></a>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+
+					
+					{% endfor %}
+					<div class="pagination" style="position:relative; font-size:20px; margin:0px; left:500px;">
+						<span class="step-links">
+
+							{% if order_items.has_previous %}
+								<a style="font-size:20px;" href="?page={{ order_items.previous_page_number }}">&laquo;</a>
+							{% else %}
+								<a style="font-size:20px;" class="hidden" >&laquo;</a>
+							{% endif %}
+
+							<span style="font-size:20px;" class="current">
+								Page {{ order_items.number }} of {{ order_items.paginator.num_pages }}.
+							</span>
+
+							{% if order_items.has_next %}
+								<a style="font-size:20px;" href="?page={{ order_items.next_page_number }}">&raquo;</a>
+							{% else %}
+								<a style="font-size:20px;" class="hidden">&raquo;</a>
+							{% endif %}
+
+						</span>
+					</div>
+
+				</div>	
+			</div>
+		</div>
+	<!-- //new_arrivals --> 
+	<!-- /we-offer -->
+		
+	<!-- //we-offer -->
+<!--/grids-->
+
+{% endblock inner_content %}

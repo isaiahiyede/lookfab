@@ -1,0 +1,223 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Look-Fab: Admin</title>
+
+         <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/style5.css' %}">
+
+        <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.7/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+        
+          <script type="text/javascript" charset="utf-8">
+              $(document).ready(function() {
+
+                  $('#userDatatable').DataTable();
+                  $('#itemsDatatable').DataTable();
+                  $('#paymentDatatable').DataTable();
+                  $('#ordersDatatable').DataTable();
+                  $('#categoriesDatatable').DataTable();
+ 
+                });
+          </script>
+    </head>
+
+    <body>
+
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Look-Fab Admin</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p><a href="{% url 'general:admin' %}" style="text-transform: none !important;">Dashboard</a></p>
+                    <li><a href="#">Hi, {{request.user.username}}</a></li>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Add</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="{% url 'general:add_category' %}">Add New Category</a></li>
+                            <li><a href="{% url 'general:add_item' %}">Add New Item</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Logs</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="{% url 'general:all_orders' %}">All Orders</a></li>
+                            <li><a href="{% url 'general:all_payments' %}">All Payments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'general:logout' %}">Logout</a></li>
+                    
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            {% block content %}
+           
+            <div id="content">
+                <h3>STORE ITEMS</h3>
+                <div class="table-responsive">
+                <table id="itemsDatatable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Weight</th>
+                            <th>Category</th>
+                            <th>Tag</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Stock left</th>
+                            <th>Stock Sold</th>
+                            <th>Ship cost USA</th>
+                            <th>Ship cost NGN</th>
+                            <th>Added By</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    {% for item in all_items %}
+                        <tr>
+                            
+                            <td>{{item.courier_tracking_number}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.weight}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.tag}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.quantity_left}}</td>
+                            <td>{{item.quantity_sold}}</td>
+                            <td>{{item.shipping_cost_USA}}</td>
+                            <td>{{item.shipping_cost_NGN}}</td>
+                            <td>{{item.created_by}}</td>
+                            {% if item.item_image_big %}
+                            <td><img src="{{item.item_image_big.url}}" style="height: 50px;"></td>
+                            {% else %}
+                            <td><img src="{% static 'images/default.jpg' %}" style="height: 50px;"></td>
+                            {% endif %}
+                            <td>
+                                <a class="edit_item" item_pk="{{item.pk}}">
+                                <i class="fa fa-pencil" title="Edit" style="cursor: pointer;"></i>
+                                </a>
+                                &nbsp;
+                                <a href="{% url 'general:delete_item' item.pk %}" onClick="return confirm('Are you sure you want to delete this item?')" item_pk="{{item.pk}}">
+                                <i class="fa fa-trash-o" title="Delete" style="cursor: pointer;"></i>
+                                </a>
+                            </td>
+                            
+                        </tr>
+                    {% endfor %}  
+                    </tbody>
+                    
+                </table>
+            </div>
+            </div>
+            {% endblock content %}
+
+            
+        </div>
+
+
+        {% block modals %}
+
+            <div class="modal fade" id="editItem" tabindex="-1" role="dialog" 
+                    aria-labelledby="myModalLabel" aria-hidden="true" style="background:grey;">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="store_items">
+                    </div>
+                </div>
+            </div>
+
+        {% endblock modals %}
+
+
+        <!-- jQuery CDN -->
+         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+         <!-- Bootstrap Js CDN -->
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                     $(this).toggleClass('active');
+                 });
+             });
+         </script>
+
+         <script type="text/javascript">
+            // For demo to fit into DataTables site builder...
+          $('#userDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+
+          $('#itemsDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+
+          $('#paymentDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+
+          $('#ordersDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+          
+          $('#categoriesDatatable')
+              .removeClass( 'display' )
+              .addClass('table table-striped table-bordered');
+              
+          </script>
+
+          <script>
+
+          $('body').on('click', '.edit_item', function(e){
+
+                 var item_pk = $(this).attr('item_pk');
+                 // alert(item_pk);
+
+                 $.ajax({
+                    data: {'item_pk':item_pk},
+                    type: 'GET',
+                    url: "{% url 'general:get_item' %}",
+                    
+                    success:function(data){
+                       $('#store_items').replaceWith(data);
+                       $('#editItem').modal('show');
+                       console.log('working');
+                       
+                    },
+
+                    error:function(data){
+                       console.log('not working');
+                    }
+                 })
+           });
+          </script>
+    </body>
+</html>

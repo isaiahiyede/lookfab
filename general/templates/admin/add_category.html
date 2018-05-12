@@ -1,0 +1,109 @@
+{% extends 'admin/adminHomepage.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block add_event %}
+{% endblock add_event %}
+
+{% block events_won %}
+{% endblock events_won %}
+
+{% block transactions %}
+
+<div class="col-md-12 view-events">
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <!--<h3 style="margin:15px 0px 5px 0px;">
+
+                % for msg in messages %}
+                    <script>
+                        function show_alert(){
+                        var alert = '<p style="color:red;" class="text-{ msg.tags }} bg-{{ msg.tags }}">{{ msg }}</p>';
+                        document.write(alert);
+                        }
+                        display = window.setTimeout(show_alert(), 1000);
+                        window.clearTimeout(display);
+                    </script>
+                % endfor %}
+            </h3>-->
+            <h3 class="box-title">Category Manager</h3>
+            <div class="table-responsive">
+
+              
+
+                <table id="generalDatatable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <tr>
+                            <th>Item ID</th>
+                            <th>Name</th>
+                            <th>Date Created</th>
+                        </tr>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    {% for item in all_items %}
+                        <tr>
+                            <td>{{item.pk}}</td>
+                            <td>{{item.category_name}}</td>
+                            <td>{{item.created_on}}</td>
+                        </tr>
+                    {% empty %}
+                        <p>No Category in the store</p>
+                    {% endfor %}  
+                    </tbody>
+                    
+                </table>
+
+                    
+             <h3>ADD NEW CATEGORY</h3>
+        
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="bot_catcher" value="">
+          {% for hidden_field in catForm.hidden_fields %}
+            {{ hidden_field }}
+          {% endfor %}
+
+          {% if catForm.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for error in catForm.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% for field in catForm.visible_fields %}
+            <div class="form-group col-md-6">
+              {{ field.label_tag }}
+
+              {% if catForm.is_bound %}
+                {% if field.errors %}
+                  {% render_field field class="form-control is-invalid" %}
+                  {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  {% render_field field class="form-control is-valid" %}
+                {% endif %}
+              {% else %}
+                {% render_field field class="form-control" %}
+              {% endif %}
+            </div>
+          {% endfor %}
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+{% endblock transactions %}
+

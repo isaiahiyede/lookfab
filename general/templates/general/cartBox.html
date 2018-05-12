@@ -1,0 +1,21 @@
+
+<div class="top_nav_right" id="cartBox">
+	<div class="wthreecartaits wthreecartaits2 cart cart box_1"> 
+		
+		{% if request.user.is_authenticated %}	
+		<a href="{% url 'general:view_cart' %}">
+			<button class="w3view-cart" value="">
+				<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+			</button>
+		</a>
+		{% else %}
+			<button class="w3view-cart emptyCart" value="">
+				<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+			</button>
+		{% endif %}
+
+		<input type="hidden" name="out_of_stock" value="{{out_of_stock}}">
+
+		{% if request.user.is_authenticated %}{{items_in_cart}}{% endif %}	 
+	</div>
+</div>
